@@ -1,55 +1,55 @@
-import { useState } from "react";
-import { toast } from "react-toastify";
+import { useState } from 'react';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { RiSearchLine } from 'react-icons/ri';
 import PropTypes from 'prop-types';
 
 import {
-    SearchBar,
-    SearchForm,
-    SearchButton,
-    SearchFormInput,
+  SearchBar,
+  SearchForm,
+  SearchButton,
+  SearchFormInput,
 } from './Searchbar.styled';
 
 function Searchbar({ onSubmit }) {
-    const [query, setQuery] = useState('');
+  const [query, setQuery] = useState('');
 
-    const handleChange = e => {
-        setQuery(e.currentTarget.value.toLowerCase());
-    };
+  const handleChange = e => {
+    setQuery(e.currentTarget.value.toLowerCase());
+  };
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        if (query.trim() === '') {
-            toast.warn('Please, enter correct search word!');
-            return;
-        }
-        onSubmit(query);
-        setQuery('');
-    };
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (query.trim() === '') {
+      toast.warn('Please, enter correct search word!');
+      return;
+    }
+    onSubmit(query);
+    setQuery('');
+  };
 
-     return (
-       <SearchBar>
-         <SearchForm onSubmit={handleSubmit}>
-           <SearchButton type="submit">
-             <RiSearchLine
-               style={{ fill: 'darkblue', height: '25px', width: '25px' }}
-             />
-           </SearchButton>
+  return (
+    <SearchBar>
+      <SearchForm onSubmit={handleSubmit}>
+        <SearchButton type="submit">
+          <RiSearchLine
+            style={{ fill: 'darkblue', height: '25px', width: '25px' }}
+          />
+        </SearchButton>
 
-           <SearchFormInput
-             onChange={handleChange}
-             className="input"
-             type="text"
-             name="query"
-             value={query}
-             autoComplete="off"
-             autoFocus
-             placeholder="Search images and photos"
-           />
-         </SearchForm>
-       </SearchBar>
-     );
+        <SearchFormInput
+          onChange={handleChange}
+          className="input"
+          type="text"
+          name="query"
+          value={query}
+          autoComplete="off"
+          autoFocus
+          placeholder="Search images and photos"
+        />
+      </SearchForm>
+    </SearchBar>
+  );
 }
 
 Searchbar.propTypes = {
